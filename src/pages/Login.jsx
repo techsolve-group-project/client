@@ -1,12 +1,40 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
+import http from '../helpers/http';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await http({
+        method: 'POST',
+        url: '/auth/login',
+        data: {
+          email,
+          password,
+        },
+      });
+      localStorage.setItem('access_token', result.data.token);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: error.response.statusText,
+        text: error.response.data.message,
+      });
+    }
+  };
   return (
     <div className="bg-slate-900 h-screen w-screen flex justify-center items-center">
-      <form className="max-w-sm mx-auto w-lg p-4">
+      <form
+        className="max-w-sm mx-auto w-lg p-4"
+        onSubmit={handleLogin}
+      >
         <h2 className="dark:text-white font-bold text-2xl mb-4 text-center">Login</h2>
         <div className="mb-5">
           <label
