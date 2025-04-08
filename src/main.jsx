@@ -5,6 +5,7 @@ import './index.css';
 import AuthLayout from './components/AuthLayout';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import FormAddQuestion from './pages/FormAddQuestion';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -25,7 +26,7 @@ createRoot(document.getElementById('root')).render(
           />
           <Route
             path="/add-question"
-            element={<h1>Add question form</h1>}
+            element={<FormAddQuestion/>}
           />
           <Route
             path="/questions/:id"
