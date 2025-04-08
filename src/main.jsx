@@ -10,6 +10,7 @@ import FormAddQuestion from './pages/FormAddQuestion';
 // conflict
 import PublicLayout from './layout/PublicLayout';
 import QuestionPost from './pages/QuestionPost';
+import Homepage from './pages/Homepage';
 
 
 createRoot(document.getElementById('root')).render(
@@ -32,7 +33,7 @@ createRoot(document.getElementById('root')).render(
         >
           <Route
             index
-            element={<h1>Home</h1>}
+            element={<Homepage/>}
           />
           <Route
             path="/add-question"
