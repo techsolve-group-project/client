@@ -5,7 +5,13 @@ import './index.css';
 import AuthLayout from './layout/AuthLayout';
 import Login from './pages/Login';
 import Register from './pages/Register';
+// hafidz
+import FormAddQuestion from './pages/FormAddQuestion';
+// conflict
 import PublicLayout from './layout/PublicLayout';
+import QuestionPost from './pages/QuestionPost';
+import Homepage from './pages/Homepage';
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -27,15 +33,15 @@ createRoot(document.getElementById('root')).render(
         >
           <Route
             index
-            element={<h1>Home</h1>}
+            element={<Homepage/>}
           />
           <Route
             path="/add-question"
-            element={<h1>Add question form</h1>}
+            element={<FormAddQuestion/>}
           />
           <Route
             path="/questions/:id"
-            element={<h1>Question details</h1>}
+            element={<QuestionPost/>}
           />
         </Route>
       </Routes>

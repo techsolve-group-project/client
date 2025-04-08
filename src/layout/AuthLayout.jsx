@@ -14,7 +14,8 @@ export default function AuthLayout() {
   }, []);
   return (
     <>
-      <Outlet />
+        <Navbar/>
+        <Outlet/>
     </>
   );
 }
