@@ -1,9 +1,20 @@
-import { Outlet } from "react-router"
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router';
 export default function AuthLayout() {
-    return(
-        <>
-        <h1>Navbar</h1>
-        <Outlet/>
-        </>
-    )
+  const navigate = useNavigate();
+  const handleIsLoggedIn = () => {
+    const token = localStorage.getItem('access_token');
+    if (!token || token === 'undefined') {
+      return navigate('/login');
+    }
+    return;
+  };
+  useEffect(() => {
+    handleIsLoggedIn();
+  }, []);
+  return (
+    <>
+      <Outlet />
+    </>
+  );
 }

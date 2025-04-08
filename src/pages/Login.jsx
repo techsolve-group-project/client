@@ -18,7 +18,7 @@ const Login = () => {
           password,
         },
       });
-      localStorage.setItem('access_token', result.data.token);
+      localStorage.setItem('access_token', result.data.access_token);
       navigate('/');
     } catch (error) {
       console.log(error);
