@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import FormAddQuestion from './pages/FormAddQuestion';
 // conflict
 import PublicLayout from './layout/PublicLayout';
+import QuestionPost from './pages/QuestionPost';
 
 
 createRoot(document.getElementById('root')).render(
@@ -39,7 +40,7 @@ createRoot(document.getElementById('root')).render(
           />
           <Route
             path="/questions/:id"
-            element={<h1>Question details</h1>}
+            element={<QuestionPost/>}
           />
         </Route>
       </Routes>
