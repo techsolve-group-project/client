@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import http from '../helpers/http';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -17,9 +19,14 @@ const Login = () => {
         },
       });
       localStorage.setItem('access_token', result.data.token);
-      console.log(result.data);
+      navigate('/');
     } catch (error) {
       console.log(error);
+      Swal.fire({
+        icon: 'error',
+        title: error.response.statusText,
+        text: error.response.data.message,
+      });
     }
   };
   return (
