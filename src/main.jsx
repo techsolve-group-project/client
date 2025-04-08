@@ -2,25 +2,31 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import './index.css';
-import AuthLayout from './components/AuthLayout';
+import AuthLayout from './layout/AuthLayout';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import PublicLayout from './layout/PublicLayout';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-        <Route
-          path="/register"
-          element={<Register />}
-        />
-        <Route element={<AuthLayout />}>
+        <Route element={<PublicLayout />}>
           <Route
-            path="/"
+            path="/login"
+            element={<Login />}
+          />
+          <Route
+            path="/register"
+            element={<Register />}
+          />
+        </Route>
+        <Route
+          path="/"
+          element={<AuthLayout />}
+        >
+          <Route
+            index
             element={<h1>Home</h1>}
           />
           <Route
