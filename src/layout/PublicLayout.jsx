@@ -18,7 +18,6 @@ const PublicLayout = () => {
 
   return (
     <>
-      <h1>PublicLayout</h1>
       <Outlet />
     </>
   );

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
+import Navbar from '../components/Navbar';
 export default function AuthLayout() {
   const navigate = useNavigate();
   const handleIsLoggedIn = () => {
@@ -14,8 +15,8 @@ export default function AuthLayout() {
   }, []);
   return (
     <>
-        <Navbar/>
-        <Outlet/>
+      <Navbar />
+      <Outlet />
     </>
   );
 }
