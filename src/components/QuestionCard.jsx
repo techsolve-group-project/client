@@ -2,7 +2,7 @@ export default function QuestionCard() {
     return(
         <div className="bg-white rounded-md shadow-sm p-4">
   <div className="flex items-center justify-between mb-2">
-    <div className="text-gray-500 text-sm">
+    <div className="text-gray-700 text-sm">
       <span>0 votes</span>
       <span className="ml-2">0 answers</span>
     </div>
