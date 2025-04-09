@@ -76,7 +76,7 @@ export default function QuestionPost() {
 
   return (
     <>
-      <div className="w-3xl m-auto p-4">
+      <div className="max-w-3xl m-auto p-4">
         <QuestionDetailCard
           {...questionData}
           {...postUserData}

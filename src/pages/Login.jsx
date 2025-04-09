@@ -65,7 +65,7 @@ const Login = () => {
   };
   return (
     <div className="bg-slate-900 h-screen w-screen flex justify-center items-center">
-      <form className="max-w-sm mx-auto w-lg p-4" onSubmit={handleLogin}>
+      <form className="max-w-sm mx-auto w-lg p-10" onSubmit={handleLogin}>
         <h2 className="dark:text-white font-bold text-2xl mb-4 text-center">
           Login
         </h2>
@@ -114,7 +114,7 @@ const Login = () => {
         </button>
         </div>
        
-        <div className="text-white">
+        <div className="text-white py-3">
           <p>
             Doesn't have an Account?{" "}
             <Link className="text-sky-400" to={"/register"}>
