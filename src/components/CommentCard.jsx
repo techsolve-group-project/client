@@ -50,7 +50,7 @@ export default function CommentCard() {
         <div className="flex items-center space-x-4">
           <div className="text-right">
             <p className="text-xs">
-              created{" "}
+              Tempel nama kamu disini commented{" "}
               <time dateTime="2020-08-06T20:01:00">Aug 6, 2020 at 20:01</time>
             </p>
             <div className="flex items-center"></div>
