@@ -12,7 +12,6 @@ import PublicLayout from './layout/PublicLayout';
 import QuestionPost from './pages/QuestionPost';
 import Homepage from './pages/Homepage';
 
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
@@ -33,15 +32,15 @@ createRoot(document.getElementById('root')).render(
         >
           <Route
             index
-            element={<Homepage/>}
+            element={<Homepage />}
           />
           <Route
             path="/add-question"
-            element={<FormAddQuestion/>}
+            element={<FormAddQuestion />}
           />
           <Route
             path="/questions/:id"
-            element={<QuestionPost/>}
+            element={<QuestionPost />}
           />
         </Route>
       </Routes>
