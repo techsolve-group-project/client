@@ -13,6 +13,7 @@ export default function QuestionPost() {
     async function submitComment() {
         try {
             console.log({comment});
+            setComment('')
         } catch (error) {
             console.log(error);
         }
