@@ -37,11 +37,19 @@ export default function CommentCard() {
             </svg>
           </button>
         </div>
-        <div className="flex-1">
-          <div className="mt-4 py-2 px-3 bg-green-100 border border-green-300 rounded-md">
-            <p className="text-green-700 leading-relaxed mt-1">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum corrupti, nam aliquid accusantium velit voluptas praesentium voluptates. Odio consectetur aut dicta deleniti? Vitae, quidem impedit. Soluta magni vero nulla
-              commodi.
+// <<<<<<< feat/comment-textarea
+        <div className="flex items-center space-x-4">
+          <div className="text-right">
+            <p className="text-xs">
+              Tempel nama kamu disini commented{" "}
+              <time dateTime="2020-08-06T20:01:00">Aug 6, 2020 at 20:01</time>
+// =======
+//         <div className="flex-1">
+//           <div className="mt-4 py-2 px-3 bg-green-100 border border-green-300 rounded-md">
+//             <p className="text-green-700 leading-relaxed mt-1">
+//               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum corrupti, nam aliquid accusantium velit voluptas praesentium voluptates. Odio consectetur aut dicta deleniti? Vitae, quidem impedit. Soluta magni vero nulla
+//               commodi.
+// >>>>>>> dev
             </p>
           </div>
           <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
