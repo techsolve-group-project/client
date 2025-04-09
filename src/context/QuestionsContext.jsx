@@ -8,8 +8,14 @@ const QuestionContextProvider = ({ children }) => {
   const [questions, setQuestions] = useState([]);
   useEffect(() => {
     socket.on('question:info', (question) => {
+      console.log(question);
+
       setQuestions((current) => [...current, question])
     })
+
+    return() => {
+      socket.off('question:info')
+    }
   }, [])
   const fetchQuestions = async () => {
     try {
