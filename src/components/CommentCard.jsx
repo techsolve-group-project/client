@@ -1,12 +1,47 @@
 import dateFormatter from '../helpers/dateFormatter';
+import http from '../helpers/http';
 
-export default function CommentCard({ name, createdAt, text, vote }) {
+export default function CommentCard({ id, name, createdAt, text, vote, fetchData }) {
   const formattedDate = dateFormatter(createdAt);
+  const handleUpVote = async () => {
+    try {
+      const vote = await http({
+        method: 'PATCH',
+        url: `/comments/${id}/vote?type=up`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+      });
+      console.log(vote);
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleDownVote = async () => {
+    try {
+      const vote = await http({
+        method: 'PATCH',
+        url: `/comments/${id}/vote?type=down`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+      });
+      console.log(vote);
+      fetchData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="bg-white rounded-md shadow-sm p-4 mb-4">
       <div className="flex items-start space-x-3">
         <div className="flex flex-col items-center">
-          <button className="w-8 h-8 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center">
+          <button
+            className="w-8 h-8 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center"
+            onClick={handleUpVote}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -23,7 +58,10 @@ export default function CommentCard({ name, createdAt, text, vote }) {
             </svg>
           </button>
           <span className="text-lg font-semibold text-gray-800">{vote}</span>
-          <button className="w-8 h-8 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center">
+          <button
+            className="w-8 h-8 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center"
+            onClick={handleDownVote}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
