@@ -5,19 +5,23 @@ function formatDate(isoString) {
     return 'Once upon a time...';
   }
 
+  // Tambahkan offset UTC+7 (7 jam dalam milidetik)
+  const offsetInMilliseconds = 7 * 60 * 60 * 1000;
+  const adjustedDate = new Date(date.getTime() + offsetInMilliseconds);
+
   // Daftar nama bulan (dalam bahasa Inggris)
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  // Ambil informasi tanggal
-  const month = monthNames[date.getUTCMonth()];
-  const day = date.getUTCDate();
-  const year = date.getUTCFullYear();
+  // Ambil informasi tanggal dari waktu yang telah disesuaikan
+  const month = monthNames[adjustedDate.getUTCMonth()];
+  const day = adjustedDate.getUTCDate();
+  const year = adjustedDate.getUTCFullYear();
 
-  // Ambil jam dan menit (menggunakan waktu UTC sesuai input)
-  const hours = date.getUTCHours().toString().padStart(2, '0');
-  const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+  // Ambil jam dan menit
+  const hours = adjustedDate.getUTCHours().toString().padStart(2, '0');
+  const minutes = adjustedDate.getUTCMinutes().toString().padStart(2, '0');
 
-  // Buat format output seperti "April 8, 2024, 13:43"
+  // Format output seperti "April 8, 2024, 20:43"
   return `${month} ${day}, ${year}, ${hours}:${minutes}`;
 }
 
