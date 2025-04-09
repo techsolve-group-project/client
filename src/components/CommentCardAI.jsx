@@ -1,4 +1,4 @@
-export default function CommentCardAI() {
+export default function CommentCardAI({ text }) {
   return (
     <div className="bg-white rounded-md shadow-sm p-4 mb-4">
       <div className="flex items-start space-x-3">
@@ -89,10 +89,7 @@ export default function CommentCardAI() {
         </div>
         <div className="flex-1">
           <div className="mt-4 py-2 px-3 bg-purple-100 border border-purple-300 rounded-md">
-            <p className="text-purple-700 leading-relaxed mt-1">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum corrupti, nam aliquid accusantium velit voluptas praesentium voluptates. Odio consectetur aut dicta deleniti? Vitae, quidem impedit. Soluta magni vero nulla
-              commodi.
-            </p>
+            <p className="text-purple-700 leading-relaxed mt-1">{text}</p>
           </div>
           <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
             <div className="flex items-center space-x-4"></div>
