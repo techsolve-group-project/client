@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import http from '../helpers/http';
 import { useNavigate } from 'react-router';
+import { socket } from '../util/socket';
 
 export default function FormAddQuestion() {
   const [title, setTitle] = useState('');
@@ -10,7 +11,7 @@ export default function FormAddQuestion() {
   async function submitQuestion(event) {
     event.preventDefault();
     try {
-      await http({
+      let dataQuestion = await http({
         url: '/questions',
         method: 'POST',
         headers: {
@@ -21,6 +22,8 @@ export default function FormAddQuestion() {
           text: question,
         },
       });
+      console.log(dataQuestion.data.id);
+      socket.emit("post:question", dataQuestion.data.id)
       navigate('/');
     } catch (error) {
       console.log(error);

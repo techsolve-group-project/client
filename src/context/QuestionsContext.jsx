@@ -1,9 +1,16 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import http from '../helpers/http';
+import { socket } from '../util/socket';
 
 const QuestionContext = createContext();
 const QuestionContextProvider = ({ children }) => {
+
   const [questions, setQuestions] = useState([]);
+  useEffect(() => {
+    socket.on('question:info', (question) => {
+      setQuestions((current) => [...current, question])
+    })
+  }, [])
   const fetchQuestions = async () => {
     try {
       const result = await http({
