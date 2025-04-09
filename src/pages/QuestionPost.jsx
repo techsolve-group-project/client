@@ -11,7 +11,8 @@ export default function QuestionPost() {
   const [comment, setComment] = useState('');
   const [commentData, setCommentData] = useState([]);
   const [questionData, setQuestionData] = useState({});
-  const [userData, setUserData] = useState({});
+  const [postUserData, setPostUserData] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
 
   const fetchQuestionPostData = async () => {
     try {
@@ -22,9 +23,24 @@ export default function QuestionPost() {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`,
         },
       });
-      setQuestionData(result.data);
-      setCommentData(result.data.Comments);
-      setUserData(result.data.User);
+      setQuestionData(result.data); //Data question
+      setCommentData(result.data.Comments); //data comment dari question
+      setPostUserData(result.data.User); //data user pemilik question
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getCurrentUser = async () => {
+    try {
+      const result = await http({
+        method: 'GET',
+        url: 'users/profile',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+      });
+      setCurrentUser(result.data);
     } catch (error) {
       console.log(error);
     }
@@ -32,8 +48,22 @@ export default function QuestionPost() {
 
   const submitComment = async () => {
     try {
-      console.log({ comment });
+      if (!comment) return;
+      const data = {
+        QuestionPostId: questionId,
+        UserId: currentUser.id,
+        text: comment,
+      };
+      await http({
+        method: 'POST',
+        url: `/comments/${questionId}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+        data,
+      });
       setComment('');
+      fetchQuestionPostData();
     } catch (error) {
       console.log(error);
     }
@@ -41,6 +71,7 @@ export default function QuestionPost() {
 
   useEffect(() => {
     fetchQuestionPostData();
+    getCurrentUser();
   }, []);
 
   return (
@@ -48,7 +79,7 @@ export default function QuestionPost() {
       <div className="w-3xl m-auto p-4">
         <QuestionDetailCard
           {...questionData}
-          {...userData}
+          {...postUserData}
         />
         <form>
           <label
@@ -82,8 +113,12 @@ export default function QuestionPost() {
             return (
               <CommentCard
                 key={index}
-                {...comment}
-                {...comment.User}
+                id={comment.id}
+                name={comment.User.name}
+                createdAt={comment.createdAt}
+                text={comment.text}
+                vote={comment.vote}
+                fetchData={fetchQuestionPostData}
               />
             );
           })}
