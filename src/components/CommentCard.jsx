@@ -1,4 +1,7 @@
-export default function CommentCard() {
+import dateFormatter from '../helpers/dateFormatter';
+
+export default function CommentCard({ name, createdAt, text, vote }) {
+  const formattedDate = dateFormatter(createdAt);
   return (
     <div className="bg-white rounded-md shadow-sm p-4 mb-4">
       <div className="flex items-start space-x-3">
@@ -19,7 +22,7 @@ export default function CommentCard() {
               />
             </svg>
           </button>
-          <span className="text-lg font-semibold text-gray-800">157</span>
+          <span className="text-lg font-semibold text-gray-800">{vote}</span>
           <button className="w-8 h-8 rounded-full bg-gray-200 text-gray-700 flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -39,17 +42,14 @@ export default function CommentCard() {
         </div>
         <div className="flex-1">
           <div className="mt-4 py-2 px-3 bg-green-100 border border-green-300 rounded-md">
-            <p className="text-green-700 leading-relaxed mt-1">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum corrupti, nam aliquid accusantium velit voluptas praesentium voluptates. Odio consectetur aut dicta deleniti? Vitae, quidem impedit. Soluta magni vero nulla
-              commodi.
-            </p>
+            <p className="text-green-700 leading-relaxed mt-1">{text}</p>
           </div>
           <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
             <div className="flex items-center space-x-4"></div>
             <div className="flex items-center space-x-4">
               <div className="text-right">
                 <p className="text-xs">
-                  Namamu commented <time dateTime="2020-08-06T20:01:00">Aug 6, 2020 at 20:01</time>
+                  Answered by {name} <span>on {formattedDate}</span>
                 </p>
                 <div className="flex items-center"></div>
               </div>
