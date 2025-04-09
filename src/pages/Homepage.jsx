@@ -2,9 +2,9 @@
 import { useContext, useEffect } from 'react';
 import QuestionCard from '../components/QuestionCard';
 import { QuestionContext } from '../context/QuestionsContext';
-import { io } from "socket.io-client";
+import { io } from 'socket.io-client';
 
-const socket = io("http://localhost:3000");
+const socket = io('http://localhost:3000');
 // console.log(socket);
 
 export default function Homepage() {
@@ -15,16 +15,15 @@ export default function Homepage() {
   // }, [])
 
   useEffect(() => {
-    socket.on('welcome_msg', arg => {
+    socket.on('welcome_msg', (arg) => {
       console.log(arg);
-    })
+    });
 
     return () => {
-      socket.off('welcome_msg')
+      socket.off('welcome_msg');
     };
-  }, [])
+  }, []);
 
-  
   //question post context
   const { questionData, fetchQuestions } = useContext(QuestionContext);
 
