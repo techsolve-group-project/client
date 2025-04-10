@@ -3,19 +3,16 @@ import { Outlet, useNavigate } from 'react-router';
 
 const PublicLayout = () => {
   const navigate = useNavigate();
-
+  const accessToken = localStorage.getItem('access_token');
   const handleIsLoggedIn = () => {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      return navigate('/');
+    if (accessToken) {
+      navigate('/');
     }
-    return;
   };
 
   useEffect(() => {
     handleIsLoggedIn();
   }, []);
-
   return (
     <>
       <Outlet />

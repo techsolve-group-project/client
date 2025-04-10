@@ -11,7 +11,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const result = await http({
+      await http({
         method: 'POST',
         url: '/auth/register',
         data: {
@@ -20,8 +20,7 @@ const Register = () => {
           password,
         },
       });
-      localStorage.setItem('access_token', result.data.token);
-      navigate('/');
+      navigate('/login');
     } catch (error) {
       console.log(error);
       Swal.fire({
