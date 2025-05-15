@@ -1,4 +1,4 @@
-import { io } from 'socket.io-client';
+import { io } from "socket.io-client";
 
-export const socket = io('https://tech-solve.superzeco.site/');
+export const socket = io("https://techsolve-api.hafizh.web.id/");
 // console.log(socket);
